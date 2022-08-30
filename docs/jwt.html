@@ -1,0 +1,202 @@
+<style>
+    .dragable {
+      position: absolute;
+      text-align: center;
+      cursor: move;
+    }
+
+    .non-dragable {
+      position: absolute;
+      text-align: center;
+    }
+    
+    .box {
+        color:white;
+        background: rgb(107, 159, 255);
+    }
+
+    .small-item {
+        border: 1px solid black;
+        background: white;
+    }
+
+    .line {
+        border-bottom: 1px solid black;
+    }
+
+    .arrow-left {
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;       
+        border-right:10px solid blue; 
+        transform: translate(0,-50%);
+    }
+
+    .arrow-right {
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;       
+        border-left:10px solid blue; 
+        transform: translate(0,-50%);
+    }
+
+    </style>
+
+    <div id="frontend" class="non-dragable box"  
+        style="width: 200px; height: 500px;top:190px;left:183px;" 
+        onmouseover="select('frontend')">
+      <h3>Browser</h3>
+    </div>
+
+    <div id="backend" class="non-dragable box"  
+        style="width: 200px; height: 500px;top:190px;left:736px;" 
+        onmouseover="select('backend')">
+      <h3>Back End</h3>
+    </div>
+    
+    <div id="1">
+        <div id="login" class="dragable small-item"  
+            style=" height: 50px;top:195px;left:406px;" 
+            onmouseover="select('login')">
+        <p>username/password</p>
+        </div>
+
+        <div id="line1" class="dragable line"  
+            style="width: 350px; height: 1px;top:279px;left:383px;" 
+            onmouseover="select('line1')">
+            <div class="arrow-right" style="float:right;"></div>
+        </div>
+    </div>
+
+
+    <div id="2">
+        <div id="jwt" class="dragable small-item"  
+            style="height: 50px;top:325px;left:675px;" 
+            onmouseover="select('jwt')">
+        <h5>accessToken</h5>
+        </div>
+
+        <div id="line2" class="dragable line"  
+            style="width: 350px; height: 1px;top:387px;left:383px;" 
+            onmouseover="select('line2')">
+            <div class="arrow-left"></div>
+        </div>
+    </div>
+
+    <div id="3">
+        <div id="jwt2" class="dragable small-item"  
+            style="height: 50px;top:431px;left:388px;" 
+            onmouseover="select('jwt2')">
+        <h5>accessToken</h5>
+        </div>
+    
+
+    <div id="line3" class="dragable line"  
+        style="width: 350px; height: 1px;top:487px;left:383px;" 
+        onmouseover="select('line3')">
+        On Header Authorization
+        <div class="arrow-right" style="float:right;">  
+        </div>
+    </div>
+    </div>
+
+    <div id="4">
+    <div id="data" class="dragable small-item"  
+        style="height: 50px;top:528px;left:675px;" 
+        onmouseover="select('data')">
+      <h5>JSON Data</h5>
+    </div>
+
+    <div id="line4" class="dragable line"  
+        style="width: 350px; height: 1px;top:587px;left:383px;" 
+        onmouseover="select('line4')">
+        <div class="arrow-left">  
+        </div>
+    </div>
+</div>
+
+<button onclick="hideshow(1)">
+    Step 1 
+</button>
+<button onclick="hideshow(2)">
+    Step 2 
+</button>
+<button onclick="hideshow(3)">
+    Step 3 
+</button>
+<button onclick="hideshow(4)">
+    Step 4 
+</button>
+
+<script>
+
+    function setup(){
+        for(let i=1;i<=4;i++){
+            let elem = document.getElementById(i);
+            elem.style.display = "none";
+        }
+    }
+
+    setup();
+    
+    function hideshow(id){
+        let elem = document.getElementById(id);
+        if (elem.style.display === "none") {
+            elem.style.display = "block";
+        } else {
+            elem.style.display = "none";
+        }
+    }
+
+    function select(id){
+        // Select elment that we can run drag function on
+        dragElement(document.getElementById(id));
+    }
+    
+    
+    function dragElement(elem) {
+      var targetX = 0, targetY = 0, curX = 0, curY = 0;
+      //Set onmousedown to function dragMouseDown
+      elem.onmousedown = dragMouseDown;
+      
+        /*
+            DragMouseDown collect start Position
+            Then we it calls elementDrag to know current mouse position
+            Then we it calls closeDragElement to terminate drag event if use mouseup
+        */
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        curX = e.clientX;
+        curY = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+    
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        targetX = curX - e.clientX;
+        targetY = curY - e.clientY;
+        curX = e.clientX;
+        curY = e.clientY;
+        // set the element's new position:
+        elem.style.left = (elem.offsetLeft - targetX) + "px";
+          elem.style.top = (elem.offsetTop - targetY) + "px";
+        //   console.log("x=",elem.offsetLeft,"y=",elem.offsetTop)
+      }
+    
+      function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+        console.log("x=",elem.offsetLeft,"y=",elem.offsetTop)
+      }
+    }
+    </script>
+    
