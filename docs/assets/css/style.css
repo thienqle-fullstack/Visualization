@@ -1,0 +1,82 @@
+.dragable {
+    position: absolute;
+    text-align: center;
+    cursor: move;
+}
+
+.non-dragable {
+    position: absolute;
+    text-align: center;
+}
+
+.line {
+    border-bottom: 1px solid black;
+}
+
+.box {
+    border: 1px solid black;
+}
+
+.white {
+    border: 1px solid rgb(95, 95, 95);
+    color: rgb(95, 95, 95);
+    background: white;
+}
+
+.round {
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.red {
+    background: rgb(214, 115, 115);
+    color: white;
+}
+
+.green {
+    background: rgb(69, 181, 69);
+    color: white;
+}
+
+.blue {
+    background:  rgb(107, 159, 255);
+    color: white;
+}
+
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid black;       
+    border-right:10px solid transparent;
+    border-left:10px solid transparent;
+    transform: translate(-50%,0);
+}
+
+.arrow-down {
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid black;
+    border-bottom: 10px solid transparent;       
+    border-right:10px solid transparent;
+    border-left:10px solid transparent;
+    transform: translate(-50%,0);
+}
+
+.arrow-left {
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;       
+    border-right:10px solid black; 
+    transform: translate(0,-50%);
+}
+
+.arrow-right {
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;       
+    border-left:10px solid black; 
+    transform: translate(0,-50%);
+}

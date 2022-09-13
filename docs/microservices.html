@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/loadlocal.js"></script>
+    <script src="assets/js/dragdrop.js"></script>
+	<script src="assets/js/display.js"></script>
+</head>
+<body>
+	<div id="log"></div>
+    <div id="content">
+
+    </div>
+
+<script>
+    // loadDoc("assets/xmls/data.xml");
+    loadString(`<?xml version="1.0" encoding="UTF-8"?>
+<CATALOG>
+
+	<item>
+		<id>box1</id>
+		<width>300</width>
+		<height>50</height>
+        <top>70</top>
+		<left>70</left>
+        <innerText><![CDATA[<h3>Frontend</h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>blue</shape>
+		<event>non-dragable</event>
+	</item>
+
+	<item>
+		<id>arrow1</id>
+		<width>300</width>
+		<height>80</height>
+        <top>120</top>
+		<left>220</left>
+        <innerText>request</innerText>
+		<background>black</background>
+		<shape>arrow-down</shape>
+		<event>non-dragable</event>
+	</item>
+
+
+	<item>
+		<id>box2</id>
+		<width>300</width>
+		<height>400</height>
+        <top>200</top>
+		<left>70</left>
+        <innerText><![CDATA[<h3>Monolith</h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>blue</shape>
+		<event>non-dragable</event>
+	</item>
+	<item>
+		<id>uilayer</id>
+		<width>256</width>
+		<height>70</height>
+        <top>255</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>UI layer/Serializer</h4>]]></innerText>
+		<background>white</background>
+		<shape>white</shape>
+		<event>dragable</event>
+	</item>
+
+	<item>
+		<id>controller</id>
+		<width>256</width>
+		<height>70</height>
+        <top>355</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Controller</h4>]]></innerText>
+		<background>white</background>
+		<shape>white</shape>
+		<event>dragable</event>
+	</item>
+
+	<item>
+		<id>model</id>
+		<width>256</width>
+		<height>70</height>
+        <top>455</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Data/Models</h4>]]></innerText>
+		<background>white</background>
+		<shape>white</shape>
+		<event>dragable</event>
+	</item>
+	
+</CATALOG>);`);
+
+</script>
+</body>
+</html>
+
