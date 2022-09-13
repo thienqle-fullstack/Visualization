@@ -1,3 +1,8 @@
+svg {
+    position: absolute;
+    z-index: -1;
+}
+
 .dragable {
     position: absolute;
     text-align: center;
@@ -79,4 +84,8 @@
     border-bottom: 10px solid transparent;       
     border-left:10px solid black; 
     transform: translate(0,-50%);
+}
+
+.hidden {
+    display: none;
 }

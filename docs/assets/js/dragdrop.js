@@ -1,5 +1,6 @@
 function select(id){
     // Select elment that we can run drag function on
+    if ('non-dragable' == document.getElementById(id).classList[0]) return;
     dragElement(document.getElementById(id));
 }
 
@@ -38,8 +39,8 @@ function dragElement(elem) {
       elem.style.top = (elem.offsetTop - targetY) + "px";
 
     //Debug
-    let logging = `top: ${elem.style.top}; left:${elem.style.left} `
-    document.getElementById("log").innerHTML = logging;
+    //let logging = `top: ${elem.style.top}; left:${elem.style.left} `
+    // document.getElementById("log").innerHTML = logging;
   }
 
   function closeDragElement() {
