@@ -14,6 +14,10 @@ svg {
     text-align: center;
 }
 
+#id,#log,#content {
+    box-shadow: none;
+}
+
 .line {
     border-bottom: 1px solid black;
 }
@@ -56,6 +60,7 @@ svg {
     border-right:10px solid transparent;
     border-left:10px solid transparent;
     transform: translate(-50%,0);
+    box-shadow: none;
 }
 
 .arrow-down {
@@ -66,6 +71,7 @@ svg {
     border-right:10px solid transparent;
     border-left:10px solid transparent;
     transform: translate(-50%,0);
+    box-shadow: none;
 }
 
 .arrow-left {
@@ -75,6 +81,7 @@ svg {
     border-bottom: 10px solid transparent;       
     border-right:10px solid black; 
     transform: translate(0,-50%);
+    box-shadow: none;
 }
 
 .arrow-right {
@@ -84,8 +91,20 @@ svg {
     border-bottom: 10px solid transparent;       
     border-left:10px solid black; 
     transform: translate(0,-50%);
+    box-shadow: none;
 }
 
 .hidden {
     display: none;
+}
+
+.noborder {
+    border:none;
+    box-shadow: none;
+}
+
+.nopixel {
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
 }

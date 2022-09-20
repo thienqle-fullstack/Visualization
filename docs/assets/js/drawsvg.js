@@ -52,3 +52,64 @@ function undoSvgLine() {
         element.remove()
     }
 }
+
+function addLineConnect(startId,endId,from,to) {
+    
+    let line = '';
+    let startX,startY,endX,endY ;
+    startX = startY = endX = endY = 0;
+    let start = document.getElementById(startId);
+    let end = document.getElementById(endId);
+
+
+    if(end && start) {
+        startX = start.offsetLeft + start.offsetWidth/2;
+        startY = start.offsetTop + start.offsetHeight/2;
+        endX = end.offsetLeft + end.offsetWidth;
+        endY = end.offsetTop + end.offsetHeight;
+
+        if(from=="bottom") {
+            startY = start.offsetTop + start.offsetHeight/2;
+        } else if(to=="top") {
+            startY = start.offsetTop;
+        } else {
+            startY = start.offsetTop + start.offsetHeight/2;
+        }
+
+        if(to=="bottom") {
+            endY = end.offsetTop  + end.offsetHeight;
+        } else if(to=="top") {
+            endY = end.offsetTop;
+        } else {
+            endY = end.offsetTop + end.offsetHeight/2;
+        }
+
+
+        if(from=="left") {
+            startX = start.offsetLeft;
+        } else if(from=="right") {
+            startX = start.offsetLeft + start.offsetWidth - 6;
+        } else {
+            startX = start.offsetLeft + start.offsetWidth/2;
+        }
+        
+        if(to=="left") {
+            endX = end.offsetLeft;
+        } else if(to=="right") {
+            endX = end.offsetLeft + end.offsetWidth + 6;
+        } else {
+            endX = end.offsetLeft + end.offsetWidth/2;
+        }  
+    }
+    line += `<svg id=${startId}_${endId}
+                width="100%" 
+                height="100%">
+                <line x1="${startX}" 
+                        y1="${startY}"
+                        x2="${endX}" 
+                        y2="${endY}" 
+                stroke="black"
+                stroke-width="6px"/></svg>`
+    
+    document.getElementById("content").innerHTML += line;
+}

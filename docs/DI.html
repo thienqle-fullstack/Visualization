@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/retro.css">
     <script src="assets/js/loadlocal.js"></script>
     <script src="assets/js/dragdrop.js"></script>
 	<script src="assets/js/display.js"></script>
@@ -17,21 +18,31 @@
 
     </div>
 
-    <button onclick="startDrawing()">
+    <button class="light" onclick="startDrawing()">
         Start Drawing
     </button>
-    <button onclick="stopDrawing()">
+    <button class="light" onclick="stopDrawing()">
         Stop Drawing
     </button>
-    <button onclick="undoSvgLine()">
+    <button class="light" onclick="undoSvgLine()">
         Undo
     </button>
-    <button onclick="hideshow('factory')">
+    <button class="light" onclick="hideshow('factory')">
         Enable Dependency
     </button>
-    <button onclick="hideshow('box3');hideshow('pointA1');hideshow('pointB1');hideshow('pointC1');">
+    <button class="light" onclick="hideshow('box3');hideshow('pointA1');hideshow('pointB1');hideshow('pointC1');">
         New/hide Triangle
     </button>
+	<button class="light" onclick="addLineConnect('box2','pointA',null,null);
+									addLineConnect('box2','pointB',null,null);
+									addLineConnect('box2','pointC',null,null)">
+		add Line triangle
+	</button>
+	<button class="light" onclick="addLineConnect('box3','pointA',null,null);
+									addLineConnect('box3','pointB',null,null);
+									addLineConnect('box3','pointC',null,null)">
+		add Line triangle2
+	</button>
 
 <script>
     // loadDoc("assets/xmls/data.xml");
@@ -45,7 +56,7 @@
 		<left>700</left>
         <innerText><![CDATA[<h3>Container/Factory/Injector</h3>]]></innerText>
 		<background>rgb(159,107, 255)</background>
-		<shape>blue</shape>
+		<shape>box</shape>
 		<event>non-dragable</event>
 	</item>
 	<item>
@@ -56,7 +67,7 @@
 		<left>70</left>
         <innerText><![CDATA[<h3>Triangle</h3>]]></innerText>
 		<background>rgb(107, 159, 255)</background>
-		<shape>blue</shape>
+		<shape>box</shape>
 		<event>non-dragable</event>
 	</item>
 	<item>
@@ -67,7 +78,7 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>POINT A (x,y)</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
 
@@ -79,7 +90,7 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>POINT B (x,y)</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
 
@@ -91,7 +102,7 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>POINT C (x,y)</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
 
@@ -105,7 +116,7 @@
 		<left>70</left>
         <innerText><![CDATA[<h3>Triangle</h3>]]></innerText>
 		<background>rgb(107, 159, 255)</background>
-		<shape>blue</shape>
+		<shape>box</shape>
 		<event>non-dragable</event>
 	</item>
 	<item>
@@ -116,7 +127,7 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>POINT A (x,y)</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
 
@@ -128,7 +139,7 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>POINT B (x,y)</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
 
@@ -140,13 +151,38 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>POINT C (x,y)</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
-
+	
+	
     
 	
 </CATALOG>);`);
+
+
+// <item>
+// 		<id>line1</id>
+// 		<startX>0</startX>
+// 		<startY>0</startY>
+//         <endX>700</endX>
+// 		<endY>700</endY>
+//         <innerText><![CDATA[<h4>My Line</h4>]]></innerText>
+// 		<background>white</background>
+// 		<shape>line</shape>
+// 		<event>dragable</event>
+// 	</item>
+
+// <item>
+// 		<id>line2</id>
+// 		<start>factory</start>
+// 		<end>pointA</end>
+//         <innerText><![CDATA[<h4>My Line</h4>]]></innerText>
+// 		<background>white</background>
+// 		<shape>lineconnect</shape>
+// 		<event>dragable</event>
+// 	</item>
+
 
 </script>
 </body>

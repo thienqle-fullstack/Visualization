@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+	<link rel="stylesheet" href="assets/css/retro.css">
     <link rel="stylesheet" href="assets/css/style.css">
+	<script src="assets/js/drawsvg.js"></script>
     <script src="assets/js/loadlocal.js"></script>
     <script src="assets/js/dragdrop.js"></script>
 	<script src="assets/js/display.js"></script>
@@ -15,7 +17,27 @@
     <div id="content">
 
     </div>
+    <button class="light" onclick="hideshow('frontend');hideshow('arrow2');hideshow('gateway')">
+        New/hide Microservice
+    </button>
+	<button class="light" onclick="addLineConnect('gateway','auth','bottom','top');
+									addLineConnect('gateway','product','bottom','top');
+									addLineConnect('gateway','user','bottom','top')">
+		add connection
+	</button>
+	<button class="light" onclick="addLineConnect('auth','user','right','left');
+									addLineConnect('user','product','right','left');">
+		add inter-connection
+	</button>
+	<button class="light" onclick="hideshow('box1');
+									hideshow('arrow1');
+									hideshow('box2');
+									hideshow('uilayer');
+									hideshow('controller');
+									hideshow('model');">
 
+        show/hide Monolith
+    </button>
 <script>
     // loadDoc("assets/xmls/data.xml");
     loadString(`<?xml version="1.0" encoding="UTF-8"?>
@@ -29,14 +51,14 @@
 		<left>70</left>
         <innerText><![CDATA[<h3>Frontend</h3>]]></innerText>
 		<background>rgb(107, 159, 255)</background>
-		<shape>blue</shape>
+		<shape>box</shape>
 		<event>non-dragable</event>
 	</item>
 
 	<item>
 		<id>arrow1</id>
 		<width>300</width>
-		<height>80</height>
+		<height>75</height>
         <top>120</top>
 		<left>220</left>
         <innerText>request</innerText>
@@ -54,9 +76,80 @@
 		<left>70</left>
         <innerText><![CDATA[<h3>Monolith</h3>]]></innerText>
 		<background>rgb(107, 159, 255)</background>
-		<shape>blue</shape>
+		<shape>box</shape>
 		<event>non-dragable</event>
 	</item>
+
+	<item>
+		<id>auth</id>
+		<width>100</width>
+		<height>310</height>
+        <top>290</top>
+		<left>70</left>
+        <innerText><![CDATA[<h3>Microservice <span style="color:yellow">Auth</span></h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>user</id>
+		<width>100</width>
+		<height>310</height>
+        <top>290</top>
+		<left>170</left>
+        <innerText><![CDATA[<h3>Microservice <span style="color:yellow">User</span></h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>product</id>
+		<width>100</width>
+		<height>310</height>
+        <top>290</top>
+		<left>270</left>
+        <innerText><![CDATA[<h3>Microservice <span style="color:yellow">Product</span></h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+
+	<item>
+		<id>uilayer1</id>
+		<width>70</width>
+		<height>70</height>
+        <top>255</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>UI layer</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>uilayer2</id>
+		<width>70</width>
+		<height>70</height>
+        <top>255</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>UI layer</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>uilayer3</id>
+		<width>70</width>
+		<height>70</height>
+        <top>255</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>UI layer</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+
+
+	
 	<item>
 		<id>uilayer</id>
 		<width>256</width>
@@ -65,10 +158,43 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>UI layer/Serializer</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
 
+	<item>
+		<id>controller1</id>
+		<width>70</width>
+		<height>70</height>
+        <top>355</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Controller</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>controller2</id>
+		<width>70</width>
+		<height>70</height>
+        <top>355</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Controller</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>controller3</id>
+		<width>70</width>
+		<height>70</height>
+        <top>355</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Controller</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
 	<item>
 		<id>controller</id>
 		<width>256</width>
@@ -77,10 +203,47 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>Controller</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
+	
 
+	
+	<item>
+		<id>model1</id>
+		<width>70</width>
+		<height>70</height>
+        <top>455</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Data</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>model2</id>
+		<width>70</width>
+		<height>70</height>
+        <top>455</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Data</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	<item>
+		<id>model3</id>
+		<width>70</width>
+		<height>70</height>
+        <top>455</top>
+		<left>97</left>
+        <innerText><![CDATA[<h4>Data</h4>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+	
+	
 	<item>
 		<id>model</id>
 		<width>256</width>
@@ -89,10 +252,47 @@
 		<left>97</left>
         <innerText><![CDATA[<h4>Data/Models</h4>]]></innerText>
 		<background>white</background>
-		<shape>white</shape>
+		<shape>box</shape>
 		<event>dragable</event>
 	</item>
-	
+
+	<item>
+		<id>gateway</id>
+		<width>300</width>
+		<height>50</height>
+        <top>200</top>
+		<left>570</left>
+        <innerText><![CDATA[<h3>GateWay API</h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>box</shape>
+		<event>non-dragable</event>
+	</item>
+
+	<item>
+		<id>frontend</id>
+		<width>300</width>
+		<height>50</height>
+        <top>70</top>
+		<left>570</left>
+        <innerText><![CDATA[<h3>Frontend</h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>box</shape>
+		<event>non-dragable</event>
+	</item>
+
+	<item>
+		<id>arrow2</id>
+		<width>300</width>
+		<height>75</height>
+        <top>120</top>
+		<left>720</left>
+        <innerText>request</innerText>
+		<background>black</background>
+		<shape>arrow-down</shape>
+		<event>non-dragable</event>
+	</item>
+
+
 </CATALOG>);`);
 
 </script>

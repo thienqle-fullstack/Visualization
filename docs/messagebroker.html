@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<link rel="stylesheet" href="assets/css/retro.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+	<script src="assets/js/drawsvg.js"></script>
+    <script src="assets/js/loadlocal.js"></script>
+    <script src="assets/js/dragdrop.js"></script>
+	<script src="assets/js/display.js"></script>
+</head>
+<body>
+	<div id="log"></div>
+    <div id="content">
+        
+    </div>
+    <!-- <svg class="dragable" id="message" style="left:100;top: 100;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16" onmouseover="select('message')">
+        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+      </svg> -->
+	<button class="light" onclick="addLineConnect('producer1','consumer1','right','left')";>
+		add connection
+	</button>
+    <button class="light" onclick="removeItem('producer1_consumer1')";>
+		remove connection
+	</button>
+	<button class="light" onclick="hideshow('queue1');
+									hideshow('queue2');
+									hideshow('queue3');
+									hideshow('queue4');
+									hideshow('queue5');">
+
+        show/hide queue
+    </button>
+    <button class="light" onclick="addLineConnect('producer1','queue1','right','left');
+									addLineConnect('queue5','consumer1','right','left');">
+		add queue connection
+	</button>
+<script>
+    // loadDoc("assets/xmls/data.xml");
+    loadString(`<?xml version="1.0" encoding="UTF-8"?>
+<CATALOG>
+
+	<item>
+		<id>producer1</id>
+		<width>200</width>
+		<height>50</height>
+        <top>200</top>
+		<left>70</left>
+        <innerText><![CDATA[<h3>Producer</h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+
+    <item>
+		<id>msg</id>
+		<width>50</width>
+		<height>30</height>
+        <top>200</top>
+		<left>370</left>
+        <innerText><![CDATA[<b>data</b>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable nopixel</event>
+	</item>
+
+	<item>
+		<id>consumer1</id>
+		<width>200</width>
+		<height>50</height>
+        <top>200</top>
+		<left>870</left>
+        <innerText><![CDATA[<h3>Consumer</h3>]]></innerText>
+		<background>rgb(107, 159, 255)</background>
+		<shape>box</shape>
+		<event>dragable</event>
+	</item>
+
+    <item>
+		<id>queue1</id>
+		<width>50</width>
+		<height>50</height>
+        <top>200</top>
+		<left>370</left>
+        <innerText><![CDATA[<h3> </h3>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable no-display</event>
+	</item>
+    <item>
+		<id>queue2</id>
+		<width>50</width>
+		<height>50</height>
+        <top>200</top>
+		<left>420</left>
+        <innerText><![CDATA[<h3> </h3>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable no-display</event>
+	</item>
+    <item>
+		<id>queue3</id>
+		<width>50</width>
+		<height>50</height>
+        <top>200</top>
+		<left>470</left>
+        <innerText><![CDATA[<h3> </h3>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable no-display</event>
+	</item>
+    <item>
+		<id>queue4</id>
+		<width>50</width>
+		<height>50</height>
+        <top>200</top>
+		<left>520</left>
+        <innerText><![CDATA[<h3> </h3>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable no-display</event>
+	</item>
+    <item>
+		<id>queue5</id>
+		<width>50</width>
+		<height>50</height>
+        <top>200</top>
+		<left>570</left>
+        <innerText><![CDATA[<h3> </h3>]]></innerText>
+		<background>white</background>
+		<shape>box</shape>
+		<event>dragable no-display</event>
+	</item>
+
+</CATALOG>);`);
+
+</script>
+</body>
+</html>
+

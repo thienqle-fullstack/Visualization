@@ -6,3 +6,8 @@ function hideshow(id){
         elem.style.display = "none";
     }
 }
+
+function removeItem(id) {
+    const element = document.getElementById(id);
+    element.remove();
+}
