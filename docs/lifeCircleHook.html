@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/retro.css">
+    <script src="assets/js/loadlocalJSON.js"></script>
+    <script src="assets/js/dragdrop.js"></script>
+	<script src="assets/js/display.js"></script>
+    <script src="assets/js/drawsvg.js"></script>
+</head>
+<body>
+	<div id="log" class=""></div>
+    <div id="content">
+
+    </div>
+    <script>
+
+        //key is id
+        const data = {
+                'constructor': {
+                    width: 150,
+                    height: 70,
+                    top : 100,
+                    left: 100,
+                    innerText: `<h3>Constructor</h3>`,
+                    background: `rgb(159,107, 255)`,
+                    shape: 'box',
+                    event: 'dragable'
+                },
+                'arrow1': {
+                    width: 100,
+                    height: 100,
+                    top : 150,
+                    left: 200,
+                    innerText: ``,
+                    background: `rgb(159,107, 255)`,
+                    shape: 'arrow-right',
+                    event: 'dragable'
+                },
+                'ngOnChange': {
+                    width: 150,
+                    height: 70,
+                    top : 100,
+                    left: 300,
+                    innerText: `<h3>ngOnChanges</h3>`,
+                    background: `rgb(159,107, 255)`,
+                    shape: 'box',
+                    event: 'dragable'
+                },
+		
+        }
+
+        parseContentJson(data)
+    </script>
+</body>
