@@ -13,7 +13,7 @@ function loadString(filename){
         xmlDoc.async=false;
         xmlDoc.loadXML(filename); 
     } 
-    parseContent(xmlDoc);
+    parseContentXML(xmlDoc);
 }
 
 function parseContentXML(xmlDoc) {
