@@ -10,6 +10,24 @@ function hide(id) {
     elem.style.display = "none";
 }
 
+function hideAll(className){
+    let elems = document.querySelectorAll('.'+className);
+    // let elems = document.getElementsByClassName(className);
+    if(elems)
+    elems.forEach(elem => {
+        elem.style.display = "none";
+    });
+}
+
+function showAll(className){
+    // let elems = document.getElementsByClassName(className);
+    let elems = document.querySelectorAll('.'+className);
+    if(elems) 
+    elems.forEach(elem => {
+        elem.style.display = "inline-block";
+    });
+}
+
 function popup(modal,modalcontent){
     let mymodal = document.getElementById(modal);
     let mycontent = document.getElementById(modalcontent);
