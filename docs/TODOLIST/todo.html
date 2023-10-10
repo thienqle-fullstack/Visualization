@@ -23,8 +23,9 @@
                                                   id="btnmodal">Hide</button>
         </div>
         
-        <div class="container w-75 mt-5">
-            <input id="content" class="form-control" placeholder="Note"/>
+        <div class="container w-75 mt-5" id="form-group">
+            <div id="my-form">
+                <input id="content" class="form-control" placeholder="Note"/>
             <select id="style">
                 <option value="h1">Heading 1</option>
                 <option value="h2">Heading 2</option>
@@ -45,8 +46,10 @@
                 <option value="text-danger">Red</option>
                 <option value="text-success">Green</option>
             </select>
-            <button onclick="saveNote()">Add To List</button>
-            
+            <button id="add_button" onclick="saveNote()">Add To List</button>
+            <button id="update_button" onclick="updateNote()">Update</button>
+        </div>
+
            
             <br/><br/>
             <button class="btn btn-success" onclick="saveToDatabase()">Save To Storage</button> 
@@ -60,6 +63,8 @@
         <script>
 
             const notes = new Notes();
+            let currentNoteId=0;
+            hide("update_button");
 
             function saveNote(){
                 let content = document.getElementById('content');
@@ -88,6 +93,54 @@
                 }
             }
 
+
+            function loadUpdateForm(id){
+                popup('form-group','my-form');
+                show('update_button');
+                hide('add_button')
+                currentNoteId = id;
+                let content = document.getElementById('content');
+                let style = document.getElementById('style');
+                let align = document.getElementById('align');
+                let color = document.getElementById('color');
+                let status = false;
+
+                const data = notes.getNotes()
+                for (let i=0;i<data.length;i++){
+                    if(id==data[i].id){
+                        content.value  = data[i].content
+                        style.value = data[i].style
+                        align.value = data[i].align
+                        color.value = data[i].color
+                    }
+                    
+                }
+            }
+
+            function updateNote() {
+                let id = currentNoteId;
+                let content = document.getElementById('content');
+                let style = document.getElementById('style');
+                let align = document.getElementById('align');
+                let color = document.getElementById('color');
+                let status = false;
+                const note = {
+                    id: currentNoteId,
+                    content: content.value,
+                    style: style.value,
+                    align: align.value,
+                    color: color.value,
+                    status
+                }
+                notes.updateNote(id,note);
+                content.value = '';
+                currentNoteId = 0;
+                hide('update_button');
+                popdown('form-group','my-form');
+                show('add_button')
+                loadNotes();
+            }
+
             function loadNotes(){
                 let list = document.getElementById("list");
                 console.log(list)
@@ -101,8 +154,11 @@
                                 
                                 <span class="del_button" onclick="deleteNote(${data[i].id})">
                                     <i class="bi bi-x-circle-fill" style="color:rgb(255,50,150)" title="delete"></i>
-                                </span>                                   
-                            
+                                </span>   
+                                &nbsp;                                
+                                <span class="edit_button" onclick="loadUpdateForm(${data[i].id})">
+                                    <i class="bi bi-pencil-square" style="color:rgb(50,150,225)" title="edit"></i>
+                                </span>
                                 <input type="checkbox" value="${data[i].status}"> 
                                 &nbsp;&nbsp;
                             </td>
@@ -111,6 +167,7 @@
                                     ${data[i].content}
                                 </${data[i].style}>
                             </td>
+                        
                         </tr>
                     `
                 }   
