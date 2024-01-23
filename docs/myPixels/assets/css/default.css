@@ -1,0 +1,109 @@
+.square {
+    position: absolute;
+    text-align: center;
+  }
+  
+  body {
+      margin: 0px;
+      padding:0px;
+  }
+  
+  .blank {
+      background:#888;
+  }
+  
+  .dark {
+      background:black;
+  }
+  
+  .container {
+    display: flex;
+    font-size: 0;
+   }
+  
+  div {
+      /* border: 1px solid white; */
+      margin: 0px;
+      padding: 0px;
+  }
+
+  button {
+    margin: 0px;
+  }
+
+  body {
+    background:#888
+  }
+  
+  canvas {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border: solid blue 2px;
+  }
+  
+  
+  .border {
+    border: 1px solid rgb(200, 199, 199) !important;
+ }
+
+  .cell {
+    display: inline-block;
+    background-color: whitesmoke;
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    vertical-align: top;
+    text-align: center;
+  }
+
+
+  .cellButton {
+    display: inline-block;
+    background-color: rgb(5, 152, 215);
+    width: 80px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
+    vertical-align: top;
+    text-align: center;
+  }
+
+  .cellButton:hover {
+    background-color: rgb(170, 57, 174);
+    }
+
+  .line {
+    margin: 0px;
+    padding: 0px;
+    width: 512px;
+  }
+
+  
+  .menu-panel {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .center-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  textarea {
+    width: 100%;
+    height: 100px;
+  }
+
+  #menu {
+    width: 100%;
+    
+  }
+
