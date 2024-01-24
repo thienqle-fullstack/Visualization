@@ -11,5 +11,5 @@ let icon =  {
     2: icon_bucket,
     3: icon_line,
     4: icon_rectangle,
-    5: icon_circle,    
+    5: icon_circle,   
 }

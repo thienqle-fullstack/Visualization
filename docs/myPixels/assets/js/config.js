@@ -37,8 +37,7 @@ let style = {
     PAINT: 2,
     LINE: 3,
     SQUARE: 4,     
-    CIRCLE: 5
-
+    CIRCLE: 5,
 }
 
 // let styleName = {

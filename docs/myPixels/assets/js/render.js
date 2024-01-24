@@ -223,6 +223,10 @@ function bresenhams_circle(centerX,centerY,radius){
             err-=2*x+1;
         }
     }
+    curve.forEach((point)=>{
+        if(point[1]==centerY) point[0] = point[0] <= centerX ? point[0] + 1 : point[0] -1;
+        if(point[0]==centerX) point[1] = point[1] <= centerY ? point[1] + 1 : point[1] -1;
+    })
     return curve;
 }
 
@@ -266,4 +270,15 @@ function square(startY,startX,endY,endX){
         edges.push([bottom,i])
     }
     return edges;
+}
+
+function copyMatrix(matrix1,matrix2){
+    const height = matrix1.length;
+    const width = matrix1[0].length;
+    for(let r=0;r<height;r++){
+        for(let c=0;c<width;c++){
+            matrix2[r][c] = matrix1[r][c];
+        }
+    }
+
 }

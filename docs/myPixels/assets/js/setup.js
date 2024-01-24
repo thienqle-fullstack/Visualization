@@ -2,6 +2,7 @@
 let num_cols = 16;
 let num_rows = 16;
 let matrix  = []
+let previousMatrix = []
 let selected_cell = []
 let draft_render = []
 
@@ -21,6 +22,14 @@ function setup(num_rows,num_cols) {
             row.push(0)
         }
         matrix.push(row)
+    }
+
+    for(let r=0;r<num_rows;r++) {
+        row = []
+        for(let c=0;c<num_cols;c++) {
+            row.push(0)
+        }
+        previousMatrix.push(row)
     }
 
 
@@ -69,7 +78,7 @@ function updateCell(r,c){
             if(selected_cell.length >= 2) {
    
                 selected_cell = []
-                reset_temporay_render();
+                draft_render = []
             }
            
         break;
@@ -127,6 +136,7 @@ function updateCell(r,c){
         break;
 
     }
+ 
 
 }
 
@@ -218,9 +228,11 @@ function setupMenu(){
     }
 
 
+    undoBtn = `<button class="border cellButton" onclick="undo()">Undo</button>`
     reset = `<button class="border cellButton" onclick="clearMatrix(0,0,${num_rows},${num_cols})">Reset</button>`
     svg = `<button class="border cellButton" onclick="getSVG()">SVG</button>`
     bytecode = `<button class="border cellButton" onclick="getImgSrc()">ByteCode</button>`
+    line +=undoBtn;
     line +=reset;
     line +=svg;
     line +=bytecode;
@@ -249,6 +261,7 @@ function selectColor(n){
 
     cell = document.getElementById(color[n])
     cell.style.border = "2px solid yellow";
+    copyMatrix(matrix,previousMatrix);
 }
 
 function selectStyle(n){
@@ -261,6 +274,7 @@ function selectStyle(n){
 
     cell = document.getElementById(`style-${n}`)
     cell.style.border = "2px solid magenta";
+    copyMatrix(matrix,previousMatrix);
 }
 
 function reset_temporay_render(){
@@ -307,4 +321,11 @@ function renderPixelGrid(){
         }
         
     }
+}
+
+
+function undo() {
+    copyMatrix(previousMatrix,matrix);
+    renderPixelGrid()
+    renderMatrix(matrix,num_cols,num_rows);
 }
