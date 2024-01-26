@@ -108,6 +108,7 @@ function playChain(){
     // }
     const btn = document.getElementById('playchain')
     btn.innerText = "Stop Music"
+     btn.disabled = true;
     let frequencies = []
     for(let i=0;i<chain.length;i++) {
        frequencies.push(pitches[chain[i]])
@@ -122,6 +123,7 @@ function playChain(){
     console.log(totaltime)
     setTimeout(()=>{
         btn.innerText = "Play Music"
+         btn.disabled = false;
     },totaltime*1000)
    
 }
