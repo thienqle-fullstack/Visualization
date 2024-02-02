@@ -3,6 +3,8 @@ let chain = ['E4','D4','C4','D4','E4','E4','E4','D4','D4','D4','E4','G4','G4','D
 let durations = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
 let record = false;
 let exportAudio = false;
+let whiteNotes = []
+let blackNotes = []
 
 const notes = {
     0: 'space',
@@ -59,13 +61,15 @@ function setup(){
     for(let i=0;i<keys.length;i++) {
         if(notes[i].includes('#'))
         {
-            col = `<div id="${notes[i]}" class="border cell-sharp" onclick="play('${notes[i]}',1/4)">${notes[i]}</div>`
+            col = `<div id="${notes[i]}" class="border cell-sharp" onclick="play('${notes[i]}',1/4)"><span class='note-name'>${notes[i]}</span></div>`
+            blackNotes.push(notes[i])
         } else if(notes[i].includes('space')) 
         {
             col = '';
         }
          else {
-            col = `<div id="${notes[i]}" class="border cell" onclick="play('${notes[i]}',1/4)">${notes[i]}</div>`
+            col = `<div id="${notes[i]}" class="border cell" onclick="play('${notes[i]}',1/4)"><span class='note-name'>${notes[i]}</span></div>`
+            whiteNotes.push(notes[i])
         }
         panel.innerHTML += col
     }
@@ -73,7 +77,6 @@ function setup(){
     const space = `<div id="${notes[0]}" class="border cell-space" onclick="play('${notes[0]}',1/4)">${notes[0]}</div>`
     panel.innerHTML += space
 
-    panel.innerHTML += `<br/><br/>`
     panel.innerHTML += `<div id="menu" class="line">`
     const playChain = `<button id="playchain" class="border cellButton" onclick="playChain()">Play Music</button>`
     const record = `<button id="control" class="border cellButton" onclick="controlRecord()">Record</button>`
@@ -92,7 +95,61 @@ function setup(){
 
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
     mediaStreamDestination = audioContext.createMediaStreamDestination();
+
+    let startX = 0
+    let startY = 200
+    let panelHeight = 0
+    let panelWidth = 0
+    let noteWidth = 0
+    whiteNotes.forEach((id)=> {
+        let note = document.getElementById(id)
+        let x = startX
+        let y = startY
+        note.style.position = 'absolute';
+        note.style.left= `${x}px`
+        note.style.top=`${y}px`
+        startX += note.offsetWidth
+        panelHeight = note.offsetHeight
+        panelWidth = startX
+        noteWidth = note.offsetWidth
+    })
     
+    startX = noteWidth/2+3
+    let octave_index = 1
+     for(let i=0;i<blackNotes.length;i++) {
+        let note = document.getElementById(blackNotes[i])
+        let x = startX
+        let y = startY
+        note.style.position = 'absolute';
+        note.style.left= `${x}px`
+        note.style.top=`${y}px`
+        note.style.zIndex = '1'
+        
+        if(octave_index==2 ) {
+            startX += 2*noteWidth   
+            octave_index+=1
+        } else if (octave_index==5){
+            startX += 2*noteWidth
+            octave_index = 1
+        } else {
+            startX +=  noteWidth
+            octave_index+=1
+        }
+        
+       
+        
+       
+    }
+   
+    let note = document.getElementById('space')
+    let x = panelWidth
+    let y = 200
+    note.style.position = 'absolute';
+    note.style.left= `${x}px`
+    note.style.top=`${y}px`
+
+
+
 }
 
 setup();
@@ -108,7 +165,7 @@ function playChain(){
     // }
     const btn = document.getElementById('playchain')
     btn.innerText = "Stop Music"
-     btn.disabled = true;
+    btn.disabled = true;
     let frequencies = []
     for(let i=0;i<chain.length;i++) {
        frequencies.push(pitches[chain[i]])
@@ -123,7 +180,7 @@ function playChain(){
     console.log(totaltime)
     setTimeout(()=>{
         btn.innerText = "Play Music"
-         btn.disabled = false;
+        btn.disabled = false;
     },totaltime*1000)
    
 }
@@ -159,7 +216,11 @@ function play(note,duration){
 
 function editChain() {
     const output = document.getElementById('output')
-    const temp = output.value.split(',')
+    let value =  output.value
+    value = value.replace(/\r?\n|\r/gm,"");
+    value = value.replace(/\s/g,'')
+    const temp = value.split(',')
+    console.log(temp)
     chain = []
     durations = []
     for(let i = 0;i<temp.length;i++){
