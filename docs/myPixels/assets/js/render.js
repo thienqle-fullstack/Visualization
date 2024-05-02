@@ -31,6 +31,23 @@ function generateImageData(matrix,num_cols,num_rows){
     return imageData;
 }
 
+function generateImageDataWithPallete(matrix,num_cols,num_rows,pallete){
+    const imageData  = c2D.createImageData(num_rows,num_cols)
+    
+    for(let r=0;r<num_rows;r++) {
+        for(let c=0;c<num_cols;c++) {
+            const i = (c+ r*num_cols)*4;
+            let  colorCode = pallete[matrix[r][c]];
+                imageData.data[i + 0] = colorCode[0];    // R value
+                imageData.data[i + 1] = colorCode[1];  // G value
+                imageData.data[i + 2] = colorCode[2];    // B value
+                imageData.data[i + 3] = colorCode[3];  // A value               
+          
+            
+        }      
+    }
+    return imageData;
+}
 
 function renderMatrix(matrix,num_cols,num_rows){
     
