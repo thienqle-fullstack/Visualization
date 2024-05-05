@@ -10,8 +10,8 @@ function startWebcam(event){
 
       // Check if file is a video
       if (file && file.type.includes('image/')) {
-        img.classList.add('hide');
-        canvas.classList.remove('hide');
+        // img.classList.add('hide');
+        // canvas.classList.remove('hide');
         const videoURL =  (window.URL || window.webkitURL || window || {}).createObjectURL(file);
         if (videoURL!==null) {
 
@@ -35,11 +35,11 @@ function startWebcam(event){
                       //   }
                       // canvas.width = img.width;
                       // canvas.height = img.height;
-                      // src = cv.imread(img)
-                      ctx.drawImage(img, 0, 0);
+                      src = cv.imread(img)
+                      //ctx.drawImage(img, 0, 0);
                       // cv.imshow('canvas',src)
-                      src = new cv.Mat(canvas.height, canvas.width, cv.CV_8UC4); 
-                       src.data.set(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+                  
+                      //  src.data.set(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
                     }
                 }
             };
@@ -91,7 +91,12 @@ function swapcolor(src){
                 }
             }
             
-    cv.imshow('canvas', edited);
+    // cv.imshow('canvas', edited);
+    let canvas1 = document.createElement('canvas');
+    cv.imshow(canvas1, edited);
+    let base64data= canvas1.toDataURL()
+    img.src = base64data;
+
     edited.delete();
 
 }
@@ -124,11 +129,18 @@ function swapcolor1(src){
               }
           }
           
-  cv.imshow('canvas', edited);
+          let canvas1 = document.createElement('canvas');
+          cv.imshow(canvas1, edited);
+          let base64data= canvas1.toDataURL()
+          img.src = base64data;
   edited.delete();
 
 }
 
 function originalColor(src){
-  cv.imshow('canvas', src);
+  let canvas1 = document.createElement('canvas');
+  cv.imshow(canvas1, src);
+    let base64data= canvas1.toDataURL()
+    img.src = base64data;
+  // cv.imshow('canvas', src);
 }

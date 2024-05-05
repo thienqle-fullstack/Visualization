@@ -30,13 +30,16 @@ document.getElementById('btnSwapColor1').addEventListener('click', function() {
 });
 
 document.getElementById('download').addEventListener('click', function() {
-    let dataURL = canvas.toDataURL('image/png'); 
+    let canvas1 = document.createElement('canvas');
+    cv.imshow(canvas1, src);
+
+    let dataURL = canvas1.toDataURL('image/png'); 
     link.href = dataURL;
     link.download = 'united.png';
 });
 
 document.getElementById('imageCaptureInput').addEventListener('change', startWebcam);
 document.getElementById('imageCaptureInput').addEventListener('click', (event) => {
-    img.classList.remove('hide');
-    canvas.classList.add('hide');
+    // img.classList.remove('hide');
+    // canvas.classList.add('hide');
 });
