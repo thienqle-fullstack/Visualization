@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+       
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <!-- <link rel="stylesheet" href="css/index.css"> -->
+        <link rel="stylesheet" href="css/style.css">
+        <title>Multiverse Camera</title>
+    </head>
+    <body>
+        
+  
+        <img class="camera" id="imageInput" width="100%" height="100%" />
+        <canvas class="camera hide" id="canvas" width="100%" height="100%"></canvas>
+        <div class="button">
+            <label for="imageCaptureInput" class="custom-button">
+                Camera
+            </label>
+            <input type="file" accept="image/*" id="imageCaptureInput" capture style="display: none;">
+            <button id="btnOriginalColor">Original</button>    
+            <button id="btnSwapColor">Alien</button>
+            <button id="btnSwapColor1">Earth-2</button>    
+            <a class="custom-button" id="download">Download</a>
+        </div>
+
+        <script src="js/opencv.js"></script>
+        <script src="js/setup.js"></script>
+        <script src="js/index.js"></script>
+
+    </body>
+</html>
