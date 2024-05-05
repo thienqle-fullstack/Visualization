@@ -33,11 +33,13 @@ function startWebcam(event){
                       //   } else {
                       //     canvas.width = canvas.height * widthToHeight;
                       //   }
-                      canvas.width = img.width;
-                      canvas.height = img.height;
-                      ctx.drawImage(img, 0, 0,canvas.width, canvas.height);
+                      // canvas.width = img.width;
+                      // canvas.height = img.height;
+                      // src = cv.imread(img)
+                      ctx.drawImage(img, 0, 0);
+                      // cv.imshow('canvas',src)
                       src = new cv.Mat(canvas.height, canvas.width, cv.CV_8UC4); 
-                      src.data.set(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
+                       src.data.set(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
                     }
                 }
             };
