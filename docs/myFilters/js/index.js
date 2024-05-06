@@ -36,6 +36,7 @@ document.getElementById('download').addEventListener('click', function() {
     let dataURL = canvas1.toDataURL('image/png'); 
     link.href = dataURL;
     link.download = 'united.png';
+    canvas1.remove()
 });
 
 document.getElementById('imageCaptureInput').addEventListener('change', startWebcam);

@@ -20,6 +20,7 @@
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     width: 100vw;
+
 }
 
 body {
@@ -40,6 +41,8 @@ body {
     padding: 0.5rem;
     cursor: pointer;
     text-align: center;
+    border-radius: 50%;
+    color: black;
 }
 
 .custom-button:hover {

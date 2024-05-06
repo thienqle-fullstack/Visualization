@@ -25,21 +25,7 @@ function startWebcam(event){
                     img.src = url;
             
                     img.onload = function() {
-                      // var widthToHeight = img.width / img.height;
-                      // var canvasWidthToHeight = canvas.width / canvas.height;
-
-                      //   if (widthToHeight > canvasWidthToHeight) {
-                      //     canvas.height = canvas.width / widthToHeight;
-                      //   } else {
-                      //     canvas.width = canvas.height * widthToHeight;
-                      //   }
-                      // canvas.width = img.width;
-                      // canvas.height = img.height;
                       src = cv.imread(img)
-                      //ctx.drawImage(img, 0, 0);
-                      // cv.imshow('canvas',src)
-                  
-                      //  src.data.set(ctx.getImageData(0, 0, canvas.width, canvas.height).data);
                     }
                 }
             };
@@ -76,16 +62,16 @@ function processImage(){
     // requestAnimationFrame(processVideo);
 }
 
-function swapcolor(src){
-     const edited = new cv.Mat(src.rows,src.cols, cv.CV_8UC4);
+function swapcolor(data){
+     const edited = new cv.Mat(data.rows,data.cols, cv.CV_8UC4);
 
-    for (let i = 0; i < src.rows; i++) {
-                for (let j = 0; j < src.cols; j++) {
+    for (let i = 0; i <data.rows; i++) {
+                for (let j = 0; j < data.cols; j++) {
 
 
-                    edited.ucharPtr(i, j)[0] = src.ucharPtr(i, j)[1];
-                    edited.ucharPtr(i, j)[1] = src.ucharPtr(i, j)[0];
-                    edited.ucharPtr(i, j)[2] = src.ucharPtr(i, j)[2];
+                    edited.ucharPtr(i, j)[0] = data.ucharPtr(i, j)[1];
+                    edited.ucharPtr(i, j)[1] = data.ucharPtr(i, j)[0];
+                    edited.ucharPtr(i, j)[2] = data.ucharPtr(i, j)[2];
                     edited.ucharPtr(i, j)[3] = 255;
 
                 }
@@ -98,19 +84,19 @@ function swapcolor(src){
     img.src = base64data;
 
     edited.delete();
-
+    canvas1.remove();
 }
 
-function swapcolor1(src){
-    const edited = new cv.Mat(src.rows,src.cols, cv.CV_8UC4);
+function swapcolor1(data){
+    const edited = new cv.Mat(data.rows,data.cols, cv.CV_8UC4);
 
-  for (let i = 0; i < src.rows; i++) {
-              for (let j = 0; j < src.cols; j++) {
+  for (let i = 0; i < data.rows; i++) {
+              for (let j = 0; j < data.cols; j++) {
 
 
-                let red = src.ucharPtr(i, j)[0]
-                let green = src.ucharPtr(i, j)[1]
-                let blue = src.ucharPtr(i, j)[2]
+                let red = data.ucharPtr(i, j)[0]
+                let green = data.ucharPtr(i, j)[1]
+                let blue = data.ucharPtr(i, j)[2]
                 let color = [red,green,blue]
               
                 if (red > green && red > blue) {
@@ -133,14 +119,42 @@ function swapcolor1(src){
           cv.imshow(canvas1, edited);
           let base64data= canvas1.toDataURL()
           img.src = base64data;
-  edited.delete();
-
+        edited.delete();
+        canvas1.remove();
 }
 
-function originalColor(src){
-  let canvas1 = document.createElement('canvas');
-  cv.imshow(canvas1, src);
-    let base64data= canvas1.toDataURL()
-    img.src = base64data;
-  // cv.imshow('canvas', src);
+function originalColor(data){
+  const edited = new cv.Mat(data.rows,data.cols, cv.CV_8UC4);
+
+  for (let i = 0; i < data.rows; i++) {
+              for (let j = 0; j < data.cols; j++) {
+
+
+                let red = data.ucharPtr(i, j)[0]
+                let green = data.ucharPtr(i, j)[1]
+                let blue = data.ucharPtr(i, j)[2]
+                let color = [red,green,blue]
+              
+                if (red > green && red > blue) {
+                    
+                    // Change red to green
+                    color[0] = red; 
+                    color[1] = green;
+                    color[2] = blue; 
+                } 
+
+                edited.ucharPtr(i, j)[0] = color[0];
+                edited.ucharPtr(i, j)[1] = color[1];
+                edited.ucharPtr(i, j)[2] = color[2];
+                edited.ucharPtr(i, j)[3] = 255;
+
+              }
+          }
+          
+          let canvas1 = document.createElement('canvas');
+          cv.imshow(canvas1, edited);
+          let base64data= canvas1.toDataURL()
+          img.src = base64data;
+        edited.delete();
+        canvas1.remove();
 }
