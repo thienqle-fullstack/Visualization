@@ -57,6 +57,9 @@ function processImage(){
         case FILTERSTYLE.EARTHLIKE: 
           swapcolor1(src)
         break;
+        case FILTERSTYLE.BLUE: 
+          swapcolorBlue(src)
+        break;
     }
 
     // requestAnimationFrame(processVideo);
@@ -105,6 +108,42 @@ function swapcolor1(data){
                     color[0] = green; 
                     color[1] = red;
                     color[2] = blue; 
+                } 
+
+                edited.ucharPtr(i, j)[0] = color[0];
+                edited.ucharPtr(i, j)[1] = color[1];
+                edited.ucharPtr(i, j)[2] = color[2];
+                edited.ucharPtr(i, j)[3] = 255;
+
+              }
+          }
+          
+          let canvas1 = document.createElement('canvas');
+          cv.imshow(canvas1, edited);
+          let base64data= canvas1.toDataURL()
+          img.src = base64data;
+        edited.delete();
+        canvas1.remove();
+}
+
+function swapcolorBlue(data){
+     const edited = new cv.Mat(data.rows,data.cols, cv.CV_8UC4);
+
+  for (let i = 0; i < data.rows; i++) {
+              for (let j = 0; j < data.cols; j++) {
+
+
+                let red = data.ucharPtr(i, j)[0]
+                let green = data.ucharPtr(i, j)[1]
+                let blue = data.ucharPtr(i, j)[2]
+                let color = [red,green,blue]
+              
+                if (red > green && red > blue) {
+                    
+                    // Change red to green
+                    color[0] = blue; 
+                    color[1] = green;
+                    color[2] = red; 
                 } 
 
                 edited.ucharPtr(i, j)[0] = color[0];

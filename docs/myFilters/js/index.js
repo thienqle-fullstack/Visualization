@@ -1,7 +1,8 @@
 let FILTERSTYLE = {
     EARTH: 0,
     EARTHLIKE: 1,
-    ALIEN: 2
+    ALIEN: 2,
+    BLUE: 3
 }
 let filter = 0
 
@@ -29,18 +30,22 @@ document.getElementById('btnSwapColor1').addEventListener('click', function() {
     processImage()
 });
 
+document.getElementById('btnSwapColorBlue').addEventListener('click', function() {
+    filter = FILTERSTYLE.BLUE; 
+    processImage()
+});
+
 document.getElementById('download').addEventListener('click', function() {
     let canvas1 = document.createElement('canvas');
     cv.imshow(canvas1, src);
 
     let dataURL = canvas1.toDataURL('image/png'); 
     link.href = dataURL;
-    link.download = 'united.png';
+    let filename = prompt("Enter the file name", `united${(new Date()).getTime().toString()}`);
+    if(!filename) return
+    link.download = `${filename}.png`;
     canvas1.remove()
 });
 
 document.getElementById('imageCaptureInput').addEventListener('change', startWebcam);
-document.getElementById('imageCaptureInput').addEventListener('click', (event) => {
-    // img.classList.remove('hide');
-    // canvas.classList.add('hide');
-});
+document.getElementById('imageUploadInput').addEventListener('change', startWebcam);
