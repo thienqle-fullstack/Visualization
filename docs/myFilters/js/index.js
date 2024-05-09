@@ -2,7 +2,8 @@ let FILTERSTYLE = {
     EARTH: 0,
     EARTHLIKE: 1,
     ALIEN: 2,
-    BLUE: 3
+    BLUE: 3,
+    YELLOW: 4
 }
 let filter = 0
 
@@ -35,6 +36,11 @@ document.getElementById('btnSwapColorBlue').addEventListener('click', function()
     processImage()
 });
 
+document.getElementById('btnSwapColorYellow').addEventListener('click', function() {
+    filter = FILTERSTYLE.YELLOW; 
+    processImage()
+});
+
 document.getElementById('download').addEventListener('click', function() {
     let canvas1 = document.createElement('canvas');
     cv.imshow(canvas1, src);
@@ -48,4 +54,4 @@ document.getElementById('download').addEventListener('click', function() {
 });
 
 document.getElementById('imageCaptureInput').addEventListener('change', startWebcam);
-document.getElementById('imageUploadInput').addEventListener('change', startWebcam);
+document.getElementById('imageUploadInput').addEventListener('change', startImageViewer);
