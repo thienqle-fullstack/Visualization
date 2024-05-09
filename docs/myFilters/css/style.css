@@ -8,19 +8,23 @@
     height: 100vh;
     background-color: #888;
     object-fit: cover; 
+    z-index: -1;
 }
 
 .center {
     margin: auto auto;
 }
 
-.button {
+.menu {
     position: absolute;
     z-index: 999;
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto;
+    /* display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto; */
     width: 100vw;
-
+    display: flex;
+    overflow-x: auto;
+    top: 0.5rem;
+    left: 0;
 }
 
 body {

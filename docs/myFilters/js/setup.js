@@ -54,6 +54,9 @@ function startWebcam(event){
               reader.onload = function(event) {
 
                 img.src = event.target.result;
+                img.onload = function() {
+                  src = cv.imread(img)
+                }
               };
               reader.readAsDataURL(file);
     
@@ -87,6 +90,9 @@ function processImage(){
         break;
         case FILTERSTYLE.YELLOW: 
           swapcolorYellow(src)
+        break;
+        case FILTERSTYLE.MANGA: 
+          manga(src)
         break;
     }
 
@@ -266,4 +272,22 @@ function originalColor(data){
           img.src = base64data;
         edited.delete();
         canvas1.remove();
+}
+
+function manga(data){
+  const edited = new cv.Mat(data.rows,data.cols, cv.CV_8UC4);
+
+  const thresholds =5;
+  const aperture = 130;
+  cv.Canny(data,edited,thresholds,aperture)
+  cv.bitwise_not(edited,edited);
+
+  let canvas = document.createElement('canvas');
+  cv.imshow(canvas, edited);
+  let base64data= canvas.toDataURL()
+  img.src = base64data;
+  
+  edited.delete();
+  canvas.remove();
+
 }

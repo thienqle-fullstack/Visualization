@@ -3,7 +3,8 @@ let FILTERSTYLE = {
     EARTHLIKE: 1,
     ALIEN: 2,
     BLUE: 3,
-    YELLOW: 4
+    YELLOW: 4,
+    MANGA: 5
 }
 let filter = 0
 
@@ -11,8 +12,6 @@ let filter = 0
 //     startWebcam();
 // });
 
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
 const img = document.getElementById('imageInput');
 const link= document.getElementById('download');
 
@@ -38,6 +37,11 @@ document.getElementById('btnSwapColorBlue').addEventListener('click', function()
 
 document.getElementById('btnSwapColorYellow').addEventListener('click', function() {
     filter = FILTERSTYLE.YELLOW; 
+    processImage()
+});
+
+document.getElementById('btnManga').addEventListener('click', function() {
+    filter = FILTERSTYLE.MANGA; 
     processImage()
 });
 
