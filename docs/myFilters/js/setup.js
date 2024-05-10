@@ -1,6 +1,16 @@
 
 let ratio = 1;
 let src;
+let img = addImage();
+
+function addImage(){
+  let img = document.createElement('img');
+  img.classList.add('camera')
+  img.width = "100px"
+  img.height = "100px"
+  document.body.appendChild(img);
+  return img;
+}
 
 function startWebcam(event){
    
@@ -74,7 +84,8 @@ function startWebcam(event){
 function processImage(){
 
     // let src = cv.imread(img);
-
+    img.remove();
+    img = addImage();
     switch(filter) {
         case FILTERSTYLE.EARTH: 
             originalColor(src)

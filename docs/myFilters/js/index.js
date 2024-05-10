@@ -12,7 +12,7 @@ let filter = 0
 //     startWebcam();
 // });
 
-const img = document.getElementById('imageInput');
+// const img = document.getElementById('imageInput');
 const link= document.getElementById('download');
 
 document.getElementById('btnSwapColor').addEventListener('click', function() {
