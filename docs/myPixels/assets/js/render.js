@@ -54,7 +54,8 @@ function renderMatrix(matrix,num_cols,num_rows){
       const imageData  = generateImageData(matrix,num_rows,num_cols)
    
 
-      cleanFill(c2D,"whitesmoke")
+    //   cleanFill(c2D,"whitesmoke")
+      clean(c2D)
       c2D.putImageData(imageData, 0,0);
       let scaledImage5 =scaleImageData(c2D,imageData,5,5);
       c2D.putImageData(scaledImage5,num_cols+1,0);
@@ -142,7 +143,7 @@ function whiteBackground(){
         row = []
         for(let c=0;c<num_cols;c++) {
             if(matrix[r][c]==0) {
-                row.push(1)
+                row.push(0)
             } else {
                 row.push(matrix[r][c])
             }
