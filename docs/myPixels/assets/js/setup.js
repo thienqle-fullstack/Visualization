@@ -216,7 +216,10 @@ function setupMenu(){
     panel = document.getElementById('menu')
     keys = Object.keys(colorValue)
     line = `<div class="menu-panel">`
-    for(let i=0;i<keys.length;i++) {
+    
+    let first_cell = `<div id="${color[0]}" style="background:url(${icon_transparent}); background-size: contain;" class="cell" onclick="selectColor(${0})"></div>`
+    line+=first_cell;
+    for(let i=1;i<keys.length;i++) {
         cell = `<div id="${color[i]}" class="cell" onclick="selectColor(${i})"></div>`
         line+=cell;
     }
@@ -246,7 +249,7 @@ function setupMenu(){
 
     for(let i=0;i<keys.length;i++) {
         cell = document.getElementById(color[i])
-        cell.style.backgroundColor = color[i];
+        cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[i][1]},${colorValue[i][2]},${colorValue[i][3]})`;
     }
 
     selectColor(0);
@@ -254,6 +257,13 @@ function setupMenu(){
 }
 
 setupMenu();
+
+function resetMenu(){
+    panel = document.getElementById('menu')
+    let line = `<div class="menu-panel">`
+    line +=`</div>`
+    panel.innerHTML = line
+}
 
 function selectColor(n){
     selectedColor = n;
@@ -330,7 +340,9 @@ function renderPixelGrid(){
     for(let r=0;r<num_rows;r++) {
         for(let c=0;c<num_cols;c++) {
             let render_cell = document.getElementById(`${r}_${c}`);
-            render_cell.style.backgroundColor = color[matrix[r][c]];
+            let i = matrix[r][c]
+            
+            render_cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[i][1]},${colorValue[i][2]},${colorValue[i][3]})`;
         }
     }
 }
@@ -343,7 +355,6 @@ function undo() {
 }
 
 function getIntensityMatrix(){
-
     const intensityMatrix = []
     let intensityValue = []
     let originalColor = []
@@ -470,9 +481,38 @@ function setupViewEditor(){
    
 }
 
+function setupColorEditor(){
+
+    const content = document.getElementById('content')
+    const modal = document.getElementById('modal')
+    const btnClose = `<button onclick="hideModal()">Close</button>`
+    content.innerHTML = '<br/><br/>';
+    content.innerHTML+= btnClose;
+    content.innerHTML+= '<br/><br/>';
+    let keys = Object.keys(colorValue)
+    let line = ''
+    for(let i=1;i<keys.length;i++) {
+        const btnColor = `<input type="color" id="edit_color_${i}" value="${setBtnColor(colorValue[i])}" onchange="getMenuBtnColor(colorValue,${i})">`
+        content.innerHTML+= btnColor;
+       
+    }
+   
+    for(let i=1;i<keys.length;i++) {
+        cell = document.getElementById(`edit_color_${i}`)
+        cell.style.backgroundColor = color[i];
+    }
+
+    modal.classList.remove('hide');
+
+}
+
 function hideModal(){
     const modal = document.getElementById('modal')
     modal.classList.add('hide');
+    resetMenu();
+    setupMenu();
+    renderPixelGrid()
+    renderMatrix(matrix,num_cols,num_rows)
 }
 
 function setBtnColor(color) {
@@ -488,6 +528,22 @@ function setBtnColor(color) {
     }
 
     return hex_color;
+}
+
+function getMenuBtnColor(pallete,id) {
+    hex_color = document.getElementById(`edit_color_${id}`).value
+    pallete[id][0] = parseInt(hex_color.substring(1,3),16)
+    pallete[id][1] = parseInt(hex_color.substring(3,5),16)
+    pallete[id][2] = parseInt(hex_color.substring(5,7),16)
+    pallete[id][3] = 255;
+}
+
+function getBtnColor(pallete,id) {
+    hex_color = document.getElementById(`origin${id}`).value
+    pallete[id][0] = parseInt(hex_color.substring(1,3),16)
+    pallete[id][1] = parseInt(hex_color.substring(3,5),16)
+    pallete[id][2] = parseInt(hex_color.substring(5,7),16)
+    pallete[id][3] = 255;
 }
 
 function getBtnColor(pallete,id) {
