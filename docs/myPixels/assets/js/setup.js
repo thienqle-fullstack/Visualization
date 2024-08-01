@@ -65,7 +65,7 @@ function updateCell(r,c){
                     const col = p[1]
                     let render_cell = document.getElementById(`${row}_${col}`);
                     let i = selectedColor;
-                    cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[selectedColor][1]},${colorValue[i][2]},${colorValue[i][3]})`;
+                    render_cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[selectedColor][1]},${colorValue[i][2]},${colorValue[i][3]})`;
                     matrix[row][col] = selectedColor;
                     renderMatrix(matrix,num_cols,num_rows)
                 })
