@@ -51,7 +51,8 @@ function updateCell(r,c){
     switch(state.style) {
         case style.PEN: 
             cell = document.getElementById(`${r}_${c}`);
-            cell.style.backgroundColor = color[selectedColor];
+            let i = selectedColor;
+            cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[selectedColor][1]},${colorValue[i][2]},${colorValue[i][3]})`;
             matrix[r][c] = selectedColor;
             renderMatrix(matrix,num_cols,num_rows)
         break;
@@ -63,7 +64,8 @@ function updateCell(r,c){
                     const row = p[0]
                     const col = p[1]
                     let render_cell = document.getElementById(`${row}_${col}`);
-                    render_cell.style.backgroundColor = color[selectedColor];
+                    let i = selectedColor;
+                    cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[selectedColor][1]},${colorValue[i][2]},${colorValue[i][3]})`;
                     matrix[row][col] = selectedColor;
                     renderMatrix(matrix,num_cols,num_rows)
                 })
@@ -95,7 +97,8 @@ function updateCell(r,c){
                 const row = p[0]
                 const col = p[1]
                 let render_cell = document.getElementById(`${row}_${col}`);
-                render_cell.style.backgroundColor = color[selectedColor];
+                let i = selectedColor;
+                render_cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[selectedColor][1]},${colorValue[i][2]},${colorValue[i][3]})`;
                 matrix[row][col] = selectedColor;
                 renderMatrix(matrix,num_cols,num_rows)
             })
@@ -121,7 +124,8 @@ function updateCell(r,c){
                     let render_cell = document.getElementById(`${row}_${col}`);
                     if(render_cell!==null) 
                     {
-                        render_cell.style.backgroundColor = color[selectedColor];
+                        let i = selectedColor;
+                        render_cell.style.backgroundColor = `rgba(${colorValue[i][0]},${colorValue[selectedColor][1]},${colorValue[i][2]},${colorValue[i][3]})`;
                         matrix[row][col] = selectedColor;
                     }
                     renderMatrix(matrix,num_cols,num_rows)
@@ -183,7 +187,8 @@ function adjustCell(r,c){
                     const col = elem[1]
                     matrix[row][col] = selectedColor;
                     let render_cell = document.getElementById(`${row}_${col}`);
-                    render_cell.style.backgroundColor = color[selectedColor];
+                    let i = selectedColor;
+                    render_cell.style.backgroundColor =  `rgba(${colorValue[i][0]},${colorValue[selectedColor][1]},${colorValue[i][2]},${colorValue[i][3]})`;
                     renderMatrix(matrix,num_cols,num_rows)
                 })
             }   
